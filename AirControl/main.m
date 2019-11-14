@@ -6,31 +6,27 @@
 //  Copyright © 2019 Vetle Økland. All rights reserved.
 //
 
+#define NSLog(FORMAT, ...) fprintf(stderr, "%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+
 #import <Foundation/Foundation.h>
 #import <IOBluetooth/IOBluetooth.h>
 
-#define NSLog(FORMAT, ...) fprintf(stderr, "%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+@interface AirPodsDevice : IOBluetoothDevice
 
-void setAirpodsListeningMode(int mode, IOBluetoothDevice *airpods) {
-    SEL sel = @selector(setListeningMode:);
-    
-    NSMethodSignature *signature = [[airpods class] instanceMethodSignatureForSelector:sel];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-    invocation.selector = sel;
-    [invocation setArgument:&mode atIndex:2];
-    
-    [invocation invokeWithTarget:airpods];
-}
+- (bool)isANCSupported;
+- (void)setListeningMode:(int)mode;
+
+@end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSArray *pairedDevices = [IOBluetoothDevice pairedDevices];
-        IOBluetoothDevice *airpods = nil;
+        AirPodsDevice *airpods = nil;
         
         for (IOBluetoothDevice *device in pairedDevices) {
             if ([device respondsToSelector:@selector(isANCSupported)]) {
-                if ([device performSelector:@selector(isANCSupported)]) {
-                    airpods = device;
+                if ([(AirPodsDevice*)device isANCSupported]) {
+                    airpods = (AirPodsDevice*)device;
                 }
             }
         }
@@ -58,7 +54,7 @@ int main(int argc, const char * argv[]) {
         }
         
         NSLog(@"Setting listening mode: %@", listeningModeName);
-        setAirpodsListeningMode(atoi(argv[1]), airpods);
+        [airpods setListeningMode:atoi(argv[1])];
     }
     
     return 0;

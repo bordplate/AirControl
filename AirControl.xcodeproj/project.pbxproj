@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C66DDAE237D403F00F42963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C66DDAD237D403F00F42963 /* main.m */; };
+		1C66DDB6237D406300F42963 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C66DDB5237D406300F42963 /* IOBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		1C66DDAA237D403F00F42963 /* AirControl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AirControl; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C66DDAD237D403F00F42963 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1C66DDB5237D406300F42963 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C66DDB6237D406300F42963 /* IOBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +46,7 @@
 			children = (
 				1C66DDAC237D403F00F42963 /* AirControl */,
 				1C66DDAB237D403F00F42963 /* Products */,
+				1C66DDB4237D406300F42963 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +64,14 @@
 				1C66DDAD237D403F00F42963 /* main.m */,
 			);
 			path = AirControl;
+			sourceTree = "<group>";
+		};
+		1C66DDB4237D406300F42963 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C66DDB5237D406300F42963 /* IOBluetooth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
